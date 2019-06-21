@@ -34,11 +34,6 @@ static get styles() {
     :host {
       display: block;
     }
-    .container {
-      display: relative;
-      width: 100vw;
-      height: 100vh;
-    }
   `;
 }
 static get properties() {
@@ -51,20 +46,14 @@ constructor() {
 
 render() {
   return html`
-    <div class="container">
-      <button @click="${this._showToast}">
-        Show Toast
-      </button>
-      <lit-toast>I'm a toast</lit-toast>
-    </div>
+    <button @click="${this._showToast}">
+      Show Toast
+    </button>
+    <lit-toast></lit-toast>
   `;
 }
 
 _showToast() {
-  this.shadowRoot.querySelector('lit-toast').show();
+  this.shadowRoot.querySelector('lit-toast').show("I'm a toast");
 }
 ```
-
-## Notes
-
-- `lit-toast` must be child of an element with CSS property `position` set to relative (and preferably taking full width and height of the viewport). This allows the positioning of `lit-toast` on the window.
