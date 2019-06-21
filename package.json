@@ -1,0 +1,31 @@
+{
+  "name": "lit-toast",
+  "version": "0.1.0",
+  "description": "Web component for toasts implemented with LitElement.",
+  "main": "lit-toast",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victor-Bernabe/lit-toast.git"
+  },
+  "keywords": [
+    "toast",
+    "alert",
+    "notification",
+    "message",
+    "webcomponent",
+    "litelement",
+    "polymer"
+  ],
+  "author": "Victor Bernabe Perez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Victor-Bernabe/lit-toast/issues"
+  },
+  "homepage": "https://github.com/Victor-Bernabe/lit-toast#readme",
+  "dependencies": {
+    "lit-element": "^2.2.0"
+  }
+}
