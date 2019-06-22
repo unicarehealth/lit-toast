@@ -1,6 +1,6 @@
 {
   "name": "lit-toast",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Web component for toasts implemented with LitElement.",
   "main": "lit-toast",
   "scripts": {
