@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.0.1 - 2019-06-22
+
+- [Add] Simple demo page.
+
 ### 1.0.0 - 2019-06-22
 
 - [Add] Basic functionality.

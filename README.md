@@ -4,6 +4,8 @@
 
 Web component for toasts implemented with LitElement.
 
+[Demo](https://lit-toast-demo.victorbp.site)
+
 ## Installation
 
 ```shell
