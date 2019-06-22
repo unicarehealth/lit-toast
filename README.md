@@ -2,9 +2,7 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/lit-toast) ![npm](https://img.shields.io/npm/v/lit-toast.svg)
 
-Web component for toasts implemented with LitElement..
-
-![lit-toast example](https://raw.githubusercontent.com/Victor-Bernabe/lit-toast/master/img/example.png)
+Web component for toasts implemented with LitElement.
 
 ## Installation
 
@@ -57,3 +55,23 @@ _showToast() {
   this.shadowRoot.querySelector('lit-toast').show("I'm a toast");
 }
 ```
+
+## Styling
+
+```css
+lit-toast {
+  --lt-border: 2px solid red;
+}
+```
+
+| CSS property          | Default value |
+| --------------------- | ------------- |
+| --lt-background-color | #292929       |
+| --lt-border           | none          |
+| --lt-border-radius    | 2px           |
+| --lt-bottom           | 40px          |
+| --lt-color            | #dddddd       |
+| --lt-font-family      | sans-serif    |
+| --lt-font-size        | 1em           |
+| --lt-padding          | 16px          |
+| --lt-z-index          | 2             |

@@ -9,8 +9,8 @@ class LitToast extends LitElement {
         width: 100%;
         visibility: hidden;
         position: fixed;
-        z-index: 1;
-        bottom: 40px;
+        z-index: var(--lt-z-index, 2);
+        bottom: var(--lt-bottom, 40px);
       }
 
       :host(.show) {
@@ -21,11 +21,14 @@ class LitToast extends LitElement {
 
       div {
         min-width: 100px;
-        background-color: var(--hc-dark-background, #292929);
-        color: var(--hc-light-text, #dddddd);
+        background-color: var(--lt-background-color, #292929);
+        color: var(--lt-color, #dddddd);
         text-align: center;
-        border-radius: 2px;
-        padding: 16px;
+        border-radius: var(--lt-border-radius, 2px);
+        padding: var(--lt-padding, 16px);
+        border: var(--lt-border, none);
+        font-size: var(--lt-font-size, 1em);
+        font-family: var(--lt-font-family, sans-serif);
       }
 
       @-webkit-keyframes fadein {
@@ -34,7 +37,7 @@ class LitToast extends LitElement {
           opacity: 0;
         }
         to {
-          bottom: 40px;
+          bottom: var(--lt-bottom, 40px);
           opacity: 1;
         }
       }
@@ -45,14 +48,14 @@ class LitToast extends LitElement {
           opacity: 0;
         }
         to {
-          bottom: 40px;
+          bottom: var(--lt-bottom, 40px);
           opacity: 1;
         }
       }
 
       @-webkit-keyframes fadeout {
         from {
-          bottom: 40px;
+          bottom: var(--lt-bottom, 40px);
           opacity: 1;
         }
         to {
@@ -63,7 +66,7 @@ class LitToast extends LitElement {
 
       @keyframes fadeout {
         from {
-          bottom: 40px;
+          bottom: var(--lt-bottom, 40px);
           opacity: 1;
         }
         to {
@@ -93,7 +96,7 @@ class LitToast extends LitElement {
     `;
   }
 
-  show(text) {
+  show(text = '') {
     if (this.className === 'show') {
       // Do nothing, prevent spamming
     } else {
