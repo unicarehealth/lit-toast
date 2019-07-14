@@ -4,17 +4,18 @@ class LitToast extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: flex;
+        display: none;
         justify-content: center;
         width: 100%;
-        visibility: hidden;
+        /*visibility: hidden;*/
         position: fixed;
         z-index: var(--lt-z-index, 2);
         bottom: var(--lt-bottom, 40px);
       }
 
       :host(.show) {
-        visibility: visible;
+        display: flex;
+        /*visibility: visible;*/
         -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
         animation: fadein 0.5s, fadeout 0.5s 2.5s;
       }
@@ -90,10 +91,17 @@ class LitToast extends LitElement {
 
   render() {
     return html`
-      <div>
+      <div role="alert">
         ${this._toastText}
       </div>
     `;
+  }
+
+  // To read out loud the toast
+  firstUpdated() {
+    this.style.setProperty('aria-live', 'assertive');
+    this.style.setProperty('aria-atomic', 'true');
+    this.style.setProperty('aria-relevant', 'all');
   }
 
   show(text = '') {
