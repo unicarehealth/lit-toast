@@ -1,5 +1,17 @@
 # Changelog
 
+### 1.4.0 - 2021-02-01
+
+- [Add] Promise to know when the toast has finished.
+
+### 1.3.0 - 2021-02-01
+
+- [Add] Argument for toast duration.
+
+### 1.2.1 - 2021-02-01
+
+- [Chore] Add index.html and my-app.js for local development.
+
 ### 1.2.0 - 2019-07-14
 
 - [Add] Support for assertive technologies.

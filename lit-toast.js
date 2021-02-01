@@ -104,16 +104,24 @@ class LitToast extends LitElement {
     this.style.setProperty('aria-relevant', 'all');
   }
 
-  show(text = '') {
-    if (this.className === 'show') {
-      // Do nothing, prevent spamming
-    } else {
-      this._toastText = text;
-      this.className = 'show';
-      setTimeout(() => {
-        this.className = this.className.replace('show', '');
-      }, 3000);
-    }
+  show(text = '', duration = 3000) {
+    return new Promise((resolve, reject) => {
+      if (this.className === 'show') {
+        // Do nothing, prevent spamming
+      } else {
+        // 1000ms to avoid both 0.5s animations to not interfere
+        if (duration >= 1000) {
+          this.style.animation = `fadein 0.5s, fadeout 0.5s ${duration -
+            500}ms`;
+        }
+        this._toastText = text;
+        this.className = 'show';
+        setTimeout(() => {
+          this.className = this.className.replace('show', '');
+          resolve();
+        }, duration);
+      }
+    });
   }
 }
 
