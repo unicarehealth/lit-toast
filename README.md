@@ -53,8 +53,13 @@ render() {
   `;
 }
 
+/**
+ * toast.show(message, [duration])
+ * message: String
+ * duration: Number in ms
+ */
 _showToast() {
-  this.shadowRoot.querySelector('lit-toast').show("I'm a toast");
+  this.shadowRoot.querySelector('lit-toast').show("I'm a toast", 2500);
 }
 ```
 

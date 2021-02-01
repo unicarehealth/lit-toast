@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.3.0 - 2021-02-01
+
+- [Add] Argument for toast duration.
+
 ### 1.2.1 - 2021-02-01
 
 - [Chore] Add index.html and my-app.js for local development.
