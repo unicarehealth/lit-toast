@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.4.0 - 2021-02-01
+
+- [Add] Promise to know when the toast has finished.
+
 ### 1.3.0 - 2021-02-01
 
 - [Add] Argument for toast duration.

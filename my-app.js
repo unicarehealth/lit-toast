@@ -542,7 +542,9 @@ class MyApp extends LitElement {
   }
 
   _callToast() {
-    this.toast.show(this._message);
+    this.toast.show(this._message).then(() => {
+      console.log('Toast finished');
+    });
   }
 
   _updateMessage(event) {

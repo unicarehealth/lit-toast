@@ -57,6 +57,8 @@ render() {
  * toast.show(message, [duration])
  * message: String
  * duration: Number in ms
+ *
+ * return: Promise<void>, resolved when the toast has finished
  */
 _showToast() {
   this.shadowRoot.querySelector('lit-toast').show("I'm a toast", 2500);
