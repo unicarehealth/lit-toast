@@ -4,12 +4,12 @@ class LitToast extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: none;
+        display: flex;
         position: fixed;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(110%);
         z-index: var(--lt-z-index, 2);
-        bottom: var(--lt-bottom, 40px);
+        bottom: 0;
         background-color: var(--lt-background-color, #292929);
         color: var(--lt-color, #dddddd);
         text-align: center;
@@ -21,7 +21,8 @@ class LitToast extends LitElement {
       }
 
       :host(.show) {
-        display: flex;
+        bottom: var(--lt-bottom, 40px);
+        transform: translateX(-50%);
         -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
         animation: fadein 0.5s, fadeout 0.5s 2.5s;
       }
@@ -29,44 +30,44 @@ class LitToast extends LitElement {
       @-webkit-keyframes fadein {
         from {
           bottom: 0;
-          opacity: 0;
+          transform: translateX(-50%) translateY(110%);
         }
         to {
           bottom: var(--lt-bottom, 40px);
-          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
       }
 
       @keyframes fadein {
         from {
           bottom: 0;
-          opacity: 0;
+          transform: translateX(-50%) translateY(110%);
         }
         to {
           bottom: var(--lt-bottom, 40px);
-          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
       }
 
       @-webkit-keyframes fadeout {
         from {
           bottom: var(--lt-bottom, 40px);
-          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
         to {
           bottom: 0;
-          opacity: 0;
+          transform: translateX(-50%) translateY(110%);
         }
       }
 
       @keyframes fadeout {
         from {
           bottom: var(--lt-bottom, 40px);
-          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
         to {
           bottom: 0;
-          opacity: 0;
+          transform: translateX(-50%) translateY(110%);
         }
       }
     `;
@@ -89,7 +90,8 @@ class LitToast extends LitElement {
     `;
   }
 
-  firstUpdated() {
+  connectedCallback() {
+    super.connectedCallback();
     this.setAttribute('aria-live', 'polite');
   }
 
@@ -98,17 +100,22 @@ class LitToast extends LitElement {
       if (this.className === 'show') {
         // Do nothing, prevent spamming
       } else {
-        // 1000ms to avoid both 0.5s animations to not interfere
+        // 1000ms to not overlap fadein and fadeout animations
         if (duration >= 1000) {
           this.style.animation = `fadein 0.5s, fadeout 0.5s ${duration -
             500}ms`;
         }
         this._toastText = text;
         this.className = 'show';
-        setTimeout(() => {
-          this.className = this.className.replace('show', '');
-          resolve();
-        }, duration);
+        setTimeout(
+          () => {
+            this._toastText = '';
+            this.style.animation = '';
+            this.className = this.className.replace('show', '');
+            resolve();
+          },
+          duration >= 1000 ? duration : 3000
+        );
       }
     });
   }

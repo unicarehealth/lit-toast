@@ -1,8 +1,9 @@
 {
   "name": "lit-toast",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Web component for toasts implemented with LitElement.",
   "main": "lit-toast",
+  "module": "lit-toast",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
