@@ -1,5 +1,13 @@
 # Changelog
 
+### 1.5.0 - 2021-02-07
+
+- [Change] Animation behavior to improve accessibility.
+
+### 1.4.1 - 2021-02-07
+
+- [Remove] Unnecessary inner div.
+
 ### 1.4.0 - 2021-02-01
 
 - [Add] Promise to know when the toast has finished.

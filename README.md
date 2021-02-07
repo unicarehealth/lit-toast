@@ -65,6 +65,32 @@ _showToast() {
 }
 ```
 
+Or with no framework at all:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      type="module"
+      src="https://unpkg.com/lit-toast@1.5.0/lit-toast.js"
+    ></script>
+    <script>
+      function callToats() {
+        document.querySelector('lit-toast').show('Hi there');
+      }
+    </script>
+  </head>
+  <body>
+    <lit-toast></lit-toast>
+    <button onclick="callToast()">
+      Click me
+    </button>
+  </body>
+</html>
+```
+
 ## Styling
 
 ```css
