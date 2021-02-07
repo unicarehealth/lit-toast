@@ -1,5 +1,12 @@
 # Changelog
 
+### 1.5.1 - 2021-02-07
+
+- [Remove] Using lit-toast outside LitElement class.
+
+The element works inside a LitElement project because the
+references become absolute by the build process.
+
 ### 1.5.0 - 2021-02-07
 
 - [Change] Animation behavior to improve accessibility.
