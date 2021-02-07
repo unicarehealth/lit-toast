@@ -5,23 +5,11 @@ class LitToast extends LitElement {
     return css`
       :host {
         display: none;
-        justify-content: center;
-        width: 100%;
-        /*visibility: hidden;*/
         position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: var(--lt-z-index, 2);
         bottom: var(--lt-bottom, 40px);
-      }
-
-      :host(.show) {
-        display: flex;
-        /*visibility: visible;*/
-        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        animation: fadein 0.5s, fadeout 0.5s 2.5s;
-      }
-
-      div {
-        min-width: 100px;
         background-color: var(--lt-background-color, #292929);
         color: var(--lt-color, #dddddd);
         text-align: center;
@@ -30,6 +18,12 @@ class LitToast extends LitElement {
         border: var(--lt-border, none);
         font-size: var(--lt-font-size, 1em);
         font-family: var(--lt-font-family, sans-serif);
+      }
+
+      :host(.show) {
+        display: flex;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
       }
 
       @-webkit-keyframes fadein {
@@ -91,17 +85,12 @@ class LitToast extends LitElement {
 
   render() {
     return html`
-      <div role="alert">
-        ${this._toastText}
-      </div>
+      ${this._toastText}
     `;
   }
 
-  // To read out loud the toast
   firstUpdated() {
-    this.style.setProperty('aria-live', 'assertive');
-    this.style.setProperty('aria-atomic', 'true');
-    this.style.setProperty('aria-relevant', 'all');
+    this.setAttribute('aria-live', 'polite');
   }
 
   show(text = '', duration = 3000) {
