@@ -1,5 +1,5 @@
 import { css, CSSResultGroup } from "lit";
-import { LitToast } from "./lit-toast";
+import { LitToast } from "./lit-toast.js";
 
 export type ExtraClassType = "error" | "success" | "info" | "warning";
 

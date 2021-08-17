@@ -1,8 +1,8 @@
 import { LitElement, html, css, CSSResultArray, TemplateResult } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 
-import "./lit-toast.js";
 import { LitToast } from "./lit-toast.js";
+import "./lit-toast.js";
 
 interface ITargetPath extends EventTarget { value: string }
 

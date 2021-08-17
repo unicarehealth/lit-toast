@@ -103,8 +103,7 @@ In your LitElement class (TypeScript):
 
 ```typescript
 
-import { LitToast } from "lit-toast/lib/lit-toast";
-import "lit-toast";
+import "lit-toast/lib/lit-toast";
 import { showToast, toastStyles, ExtraClassType } from "lit-toast/lib/showToast";
 
 public static get styles(): CSSResultArray {
@@ -115,7 +114,7 @@ public static get styles(): CSSResultArray {
 }
 
 protected async showToastWrapper(msg: string, className: ExtraClassType = "success", duration: number = 3000): Promise<void> {
-  const toastEl = this.shadowRoot?.querySelector<LitToast>("lit-toast") ?? null;
+  const toastEl = this.shadowRoot?.querySelector("lit-toast") ?? null;
   if (toastEl !== null) {
     await showToast(toastEl, msg, className, duration);
   }
