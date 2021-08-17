@@ -15,7 +15,7 @@ npm install lit-toast --save
 Then, import lit-toast into your element:
 
 ```javascript
-import 'lit-toast/lit-toast.js';
+import 'lit-toast/lib/lit-toast.js';
 ```
 
 or in an html file:
@@ -76,12 +76,12 @@ lit-toast {
 
 lit-toast.error {
     --lt-border: 2px solid #A93226;
-    --lt-color:	#A93226;
+    --lt-color: #A93226;
 }
 
 lit-toast.success {
     --lt-border: 2px solid #196F3D;
-    --lt-color:	#196F3D;
+    --lt-color: #196F3D;
 }
 ```
 
@@ -96,3 +96,42 @@ lit-toast.success {
 | --lt-font-size        | 1em           |
 | --lt-padding          | 16px          |
 | --lt-z-index          | 2             |
+
+## Usage with Utility Functions
+
+In your LitElement class (TypeScript):
+
+```typescript
+
+import { LitToast } from "lit-toast/lib/lit-toast";
+import "lit-toast";
+import { showToast, toastStyles, ExtraClassType } from "lit-toast/lib/showToast";
+
+public static get styles(): CSSResultArray {
+  return [
+    toastStyles,
+    css``
+  ];
+}
+
+protected async showToastWrapper(msg: string, className: ExtraClassType = "success", duration: number = 3000): Promise<void> {
+  const toastEl = this.shadowRoot?.querySelector<LitToast>("lit-toast") ?? null;
+  if (toastEl !== null) {
+    await showToast(toastEl, msg, className, duration);
+  }
+}
+
+public render(): TemplateResult {
+  return html`
+    <button @click="${this.showToast}">
+      Show Toast
+    </button>
+    <lit-toast></lit-toast>
+    `;
+}
+
+protected showToast(): void {
+  this.showToastWrapper("I'm an error toast", "error");
+  this.showToastWrapper("I'm a success toast", "success");
+}
+```

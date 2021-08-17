@@ -7,8 +7,7 @@ export async function showToast(toastEl: LitToast, msg: string, className: Extra
     await toastEl.show(msg, duration, className);
 }
 
-export function toastStyles(): CSSResultGroup {
-    return css`
+export const toastStyles: CSSResultGroup = css`
         lit-toast {
             --lt-bottom: 55%;
             --lt-font-size: 2.2rem;
@@ -33,4 +32,3 @@ export function toastStyles(): CSSResultGroup {
             --lt-color:	#196F3D;
         }
     `;
-}
