@@ -9,3 +9,8 @@ export declare class LitToast extends LitElement {
     protected sleep(ms: number): Promise<void>;
     show(text?: string, duration?: number, extraClass?: string): Promise<void>;
 }
+declare global {
+    interface HTMLElementTagNameMap {
+        "lit-toast": LitToast;
+    }
+}
