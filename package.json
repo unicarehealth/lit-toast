@@ -1,15 +1,24 @@
 {
   "name": "lit-toast",
+  "type": "module",
   "version": "1.5.1",
   "description": "Web component for toasts implemented with LitElement.",
-  "main": "lit-toast",
-  "module": "lit-toast",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "tsc": "tsc -p tsconfig.json",
+    "prepublish": "npm run tsc",
+    "pretest": "npm run lint",
+    "lint": "eslint --config .eslintrc.json --ignore-path .gitignore \"src/**\"",
+    "lint-fix": "eslint --config .eslintrc.json --ignore-path .gitignore \"src/**\" --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Victor-Bernabe/lit-toast.git"
+    "url": "git+https://github.com/unicarehealth/lit-toast.git"
   },
   "keywords": [
     "toast",
@@ -23,10 +32,15 @@
   "author": "Victor Bernabe Perez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Victor-Bernabe/lit-toast/issues"
+    "url": "https://github.com/unicarehealth/lit-toast/issues"
   },
   "homepage": "https://github.com/Victor-Bernabe/lit-toast#readme",
-  "dependencies": {
-    "lit-element": "^2.2.0"
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "eslint": "^7.32.0",
+    "jest": "^27.0.6",
+    "lit": "*",
+    "typescript": "^4.3.0"
   }
 }

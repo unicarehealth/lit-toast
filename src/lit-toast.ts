@@ -1,9 +1,20 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, CSSResultArray, TemplateResult } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
+import { tCase } from "./tCase.js";
 
-class LitToast extends LitElement {
-  static get styles() {
-    return css`
-      :host {
+@customElement("lit-toast")
+export class LitToast extends LitElement {
+
+    @property({type: Boolean, attribute: "use-title-case"})
+    public useTitleCase = false;
+
+    @state()
+    private toastText = "";
+
+    /** Styles for the shadow DOM. */
+    public static get styles(): CSSResultArray {
+        return [
+            css`:host {
         display: flex;
         position: fixed;
         left: 50%;
@@ -69,56 +80,51 @@ class LitToast extends LitElement {
           bottom: 0;
           transform: translateX(-50%) translateY(110%);
         }
-      }
-    `;
-  }
+      }`
+        ];
+    }
 
-  static get properties() {
-    return {
-      _toastText: { type: String }
-    };
-  }
+    public render(): TemplateResult {
+        return html`${this.toastText}`;
+    }
 
-  constructor() {
-    super();
-    this._toastText = '';
-  }
+    public connectedCallback(): void {
+        super.connectedCallback();
+        this.setAttribute("aria-live", "polite");
+    }
 
-  render() {
-    return html`
-      ${this._toastText}
-    `;
-  }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute('aria-live', 'polite');
-  }
+    protected async sleep(ms: number): Promise<void> {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
-  show(text = '', duration = 3000) {
-    return new Promise((resolve, reject) => {
-      if (this.className === 'show') {
-        // Do nothing, prevent spamming
-      } else {
+
+    public async show(text = "", duration = 3000, extraClass = ""): Promise<void> {
+        if (this.classList.contains("show")) {
+            // Do nothing, prevent spamming
+            return;
+        }
+
         // 1000ms to not overlap fadein and fadeout animations
         if (duration >= 1000) {
-          this.style.animation = `fadein 0.5s, fadeout 0.5s ${duration -
-            500}ms`;
+            this.style.animation = `fadein 0.5s, fadeout 0.5s ${duration - 500}ms`;
         }
-        this._toastText = text;
-        this.className = 'show';
-        setTimeout(
-          () => {
-            this._toastText = '';
-            this.style.animation = '';
-            this.className = this.className.replace('show', '');
-            resolve();
-          },
-          duration >= 1000 ? duration : 3000
-        );
-      }
-    });
-  }
-}
 
-customElements.define('lit-toast', LitToast);
+        if (extraClass !== "") {
+            this.classList.add(extraClass);
+        }
+
+        this.toastText = this.useTitleCase ? tCase(text) : text;
+        this.classList.add("show");
+
+        await this.sleep(duration >= 1000 ? duration : 3000);
+
+        this.toastText = "";
+        this.style.animation = "";
+        this.classList.remove("show");
+
+        if (extraClass !== "") {
+            this.classList.remove(extraClass);
+        }
+    }
+}

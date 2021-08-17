@@ -54,14 +54,16 @@ render() {
 }
 
 /**
- * toast.show(message, [duration])
+ * toast.show(message, [duration], [extraClass])
  * message: String
  * duration: Number in ms
+ * extraClass: String allows application of custom styles
  *
  * return: Promise<void>, resolved when the toast has finished
  */
 _showToast() {
-  this.shadowRoot.querySelector('lit-toast').show("I'm a toast", 2500);
+  this.shadowRoot.querySelector("lit-toast").show("I'm an error toast", 2500, "error");
+  this.shadowRoot.querySelector("lit-toast").show("I'm a success toast", 2500, "success");
 }
 ```
 
@@ -69,7 +71,17 @@ _showToast() {
 
 ```css
 lit-toast {
-  --lt-border: 2px solid red;
+  --lt-border: 2px solid #000000;
+}
+
+lit-toast.error {
+    --lt-border: 2px solid #A93226;
+    --lt-color:	#A93226;
+}
+
+lit-toast.success {
+    --lt-border: 2px solid #196F3D;
+    --lt-color:	#196F3D;
 }
 ```
 
