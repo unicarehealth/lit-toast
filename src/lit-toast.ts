@@ -98,7 +98,6 @@ export class LitToast extends LitElement {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-
   public async show(text = "", duration = 3000, extraClass = ""): Promise<void> {
     if (this.classList.contains("show")) {
       // Do nothing, prevent spamming
